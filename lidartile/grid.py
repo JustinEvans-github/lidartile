@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 
 import array
 import sys
-from .stats import mean, pstdev, clip
+from stats import mean, pstdev, clip
+import array as arr
 
 class Grid(object):
     """
@@ -12,16 +13,20 @@ class Grid(object):
     def __init__(self, width, height, initial_value=0):
         self.width = int(width)
         self.height = int(height)
-        self.data = array.array(b"f", (initial_value for i in xrange(self.width * self.height)))
+
+        print(width, height)
+
+        #self.data = array.array(b"f", (initial_value for i in xrange(self.width * self.height)))
+        self.data = arr.array("f", (initial_value for i in range(self.width * self.height)))
 
     def __getitem__(self, key):
-        if isinstance(key, (int, long)):
+        if isinstance(key, (int, int)): # (int, long)):
             return self.data[key]
         else:
             return self.data[key[0] + (key[1] * self.width)]
 
     def __setitem__(self, key, val):
-        if isinstance(key, (int, long)):
+        if isinstance(key, (int, int)): # (int, long)):
             self.data[key] = val
         else:
             self.data[key[0] + (key[1] * self.width)] = val
@@ -82,7 +87,7 @@ class Grid(object):
         """
         Returns min, max tuple of height values in this grid
         """
-        lowest = sys.maxint
+        lowest = sys.maxsize
         highest = 0
         for value in self.data:
             lowest = min(lowest, value)

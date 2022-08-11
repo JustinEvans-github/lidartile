@@ -2,10 +2,14 @@ from __future__ import unicode_literals
 
 import sys
 import argparse
-from .ingestor import AscIngestor
-from .optimiser import GridOptimiser
-from .stlwriter import StlWriter
+from ingestor import AscIngestor
+from optimiser import GridOptimiser
+from stlwriter import StlWriter
 
+# update local folder for
+import os
+cwd = os.getcwd()
+os.chdir(r'C:\Users\Justin Evans\Documents\Python\lidartile-master')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -31,26 +35,26 @@ def main():
         ingestor.grid = ingestor.grid.slice(args.slicex, args.slicey, args.slicewidth, args.sliceheight)
     grid = ingestor.grid
     if args.clip:
-        print "Clipping..."
+        print("Clipping...")
         grid.lower(args.clip)
     if args.smoothing:
-        print "Smoothing..."
+        print("Smoothing...")
         grid.smooth(factor=args.smoothing)
     if args.snap:
-        print "Snapping..."
+        print("Snapping...")
         grid.snap(args.snap)
     if args.featuresize:
         optimiser = GridOptimiser(ingestor.grid, delta=args.featuresize)
-        print "Optimising..."
+        print("Optimising...")
         polygons = optimiser.optimise()
-        print "%s polygons found" % len(polygons)
+        print("%s polygons found" % len(polygons))
     else:
         polygons = None
     lowest, highest = grid.range()
-    print "Grid ranges from %s to %s" % (lowest, highest)
+    print("Grid ranges from %s to %s" % (lowest, highest))
     writer = StlWriter(base_height=-args.base, scale=args.scale)
     writer.save_grid(ingestor.grid, args.output, polygons=polygons)
-    print ""
+    #print ""
 
 
 if __name__ == "__main__":

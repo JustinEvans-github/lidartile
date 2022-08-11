@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 
 import sys
 import array
-from .grid import Grid
+from grid import Grid
 
-POSINF = sys.maxint
-NEGINF = None
+POSINF = sys.maxsize
+NEGINF = 0 # change None to 0
 
 class AscIngestor(object):
     """
@@ -38,12 +38,12 @@ class AscIngestor(object):
         array_height = (self.top - self.bottom) / (self.cellsize * float(self.divisor))
         if int(array_height) != array_height or int(array_width) != array_width:
             raise ValueError("Non-exact divisor!")
-        print "Bounds: (%s, %s) to (%s, %s) cellsize %s divisor %s" % (self.left, self.bottom, self.right, self.top, self.cellsize, self.divisor)
-        print "Creating array of size %.1f MB" % (array_width * array_height * (4/(1024.0**2)))
+        print("Bounds: (%s, %s) to (%s, %s) cellsize %s divisor %s" % (self.left, self.bottom, self.right, self.top, self.cellsize, self.divisor))
+        print("Creating array of size %.1f MB" % (array_width * array_height * (4/(1024.0**2))))
         self.grid = Grid(array_width, array_height, self.nodata_height)
         # Load files
         for file in self.files:
-            print "Loading %s" % file
+            print("Loading %s" % file)
             self.load_file(file)
 
     def array_index(self, x, y, floor=False):

@@ -19,7 +19,7 @@ class StlWriter(object):
 
     def save_grid(self, grid, filename, polygons=None):
         self.facets = []
-        print "Saving %s" % filename
+        print("Saving %s" % filename)
         with open(filename, "wb") as fh:
             fh.write(b" " * 80)
             # We'll update this later
@@ -53,14 +53,14 @@ class StlWriter(object):
             for x, y in polygon:
                 in_polygons.add((x, y))
             self.add_polygon(fh, grid, polygon)
-        print "done"
+        print("done")
         # Main surface that isn't in polygons
         for y in range(grid.height - 1):
             self.print_progress("rows", y, grid.height - 1)
             for x in range(grid.width - 1):
                 if (x, y) not in in_polygons:
                     self.add_square(fh, grid, x, y)
-        print "done"
+        print("done")
 
     def add_polygon(self, fh, grid, polygon):
         polygon = set(polygon)

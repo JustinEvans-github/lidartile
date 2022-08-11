@@ -33,7 +33,7 @@ class GridOptimiser(object):
                 br = self.group(self.grid[x + 1, y])
                 if bl == tl == tr == br:
                     flat_tiles[x, y] = br
-        print "done"
+        print("done")
         # Now, collect all neighbouring flat tiles into polygon sets
         polygons = []
         done = 0
@@ -41,7 +41,7 @@ class GridOptimiser(object):
             self.print_progress("polygons", done, "???")
             polygons.append(self.create_polygon(flat_tiles))
             done += 1
-        print "done"
+        print("done")
         return polygons
 
     def create_polygon(self, flat_tiles):
