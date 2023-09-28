@@ -33,10 +33,13 @@ class AscIngestor(object):
     def load(self):
         # Scan each file to find the borders
         self.left, self.bottom, self.right, self.top, self.cellsize = self.find_limits()
+
         # Build array
-        array_width = (self.right - self.left) / (self.cellsize * float(self.divisor))
-        array_height = (self.top - self.bottom) / (self.cellsize * float(self.divisor))
+        array_width = round((self.right - self.left) / (self.cellsize * float(self.divisor))) # round to allow non-exact divisor
+        array_height = round((self.top - self.bottom) / (self.cellsize * float(self.divisor)))
+
         if int(array_height) != array_height or int(array_width) != array_width:
+            print(array_width, array_height)
             raise ValueError("Non-exact divisor!")
         print("Bounds: (%s, %s) to (%s, %s) cellsize %s divisor %s" % (self.left, self.bottom, self.right, self.top, self.cellsize, self.divisor))
         print("Creating array of size %.1f MB" % (array_width * array_height * (4/(1024.0**2))))
