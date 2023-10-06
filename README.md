@@ -1,6 +1,5 @@
 <img src="docs\montreal-panel.jpg" alt="drawing" width="800"/>
 <br />
-<br />
 
 LidarTile
 =========
