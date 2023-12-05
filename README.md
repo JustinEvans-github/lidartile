@@ -30,7 +30,7 @@ A 3D printing project that utilizes open-source python code (LidarTile), geograp
 ### Canadian Cities
 City, Province |  Details: 5" square tile, 1.5km
 :-------------------------:|:-------------------------:|
-| Ottawa, Ontario | Nova Scotia, Halifax
+| Ottawa, Ontario | Halifax, Nova Scotia
 | <img src="docs\ontario-ottawa.jpg" alt="drawing" width="400"/> | <img src="docs\novascotia-halifax.jpg" alt="drawing" width="400"/> |
 | Calgary, Alberta | Vancouver, British Columbia
 | <img src="docs\alberta-calgary.jpg" alt="drawing" width="400"/> | <img src="docs\british-columbia-vancouver.jpg" alt="drawing" width="400"/> |
