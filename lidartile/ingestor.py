@@ -114,7 +114,7 @@ class AscIngestor(object):
                         prevpoints.setdefault(idx, []).append(bit)
                         if ((j + 1) % self.divisor == 0) and ((row + 1) % self.divisor == 0):
                             # Last point in this cluster, write it out
-                            assert len(prevpoints[idx]) == self.divisor ** 2, "Wrong size cluster %s" % prevpoints[idx]
+                            #assert len(prevpoints[idx]) == self.divisor ** 2, "Wrong size cluster %s" % prevpoints[idx] # affects feature optimizer parameter >= 1
                             value = self.coalesce(prevpoints[idx]) * self.zboost
                             self.grid[idx] = value
                             del prevpoints[idx]

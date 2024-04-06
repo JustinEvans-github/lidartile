@@ -6,10 +6,9 @@ from ingestor import AscIngestor
 from optimiser import GridOptimiser
 from stlwriter import StlWriter
 
-# update local folder for
+# update local folder
 import os
 cwd = os.getcwd()
-os.chdir(r'C:\Users\Justin Evans\Documents\Python\lidartile-master')
 
 def main():
     parser = argparse.ArgumentParser()
